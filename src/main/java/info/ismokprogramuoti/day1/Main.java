@@ -1,5 +1,6 @@
-package info.ismokprogramuoti.day1.task1;
+package info.ismokprogramuoti.day1;
 
+import info.ismokprogramuoti.helpers.CollectionsHelper;
 import info.ismokprogramuoti.helpers.IOHelper;
 
 import java.util.Collections;
@@ -11,15 +12,12 @@ public class Main {
     public static final String TASK1_INPUT = "Day1/Day1Task1Input.txt";
     public static final Logger logger = Logger.getLogger(Main.class.getName());
 
-    public static void main(String[] args) {
+    private Main() {
+    }
+
+    public static void main() {
         // Task 1
-        List<List<Integer>> locationIdLists = IOHelper.readAdjacentLists(TASK1_INPUT)
-                .stream()
-                .map(innerList -> innerList
-                        .stream()
-                        .map(Integer::parseInt)
-                        .toList())
-                .toList();
+        List<List<Integer>> locationIdLists = CollectionsHelper.convertAdjListsToInteger(IOHelper.readAdjacentLists(TASK1_INPUT));
         List<Integer> leftList = locationIdLists.get(0);
         List<Integer> rightList = locationIdLists.get(1);
 

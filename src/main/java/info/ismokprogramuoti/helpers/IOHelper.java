@@ -39,6 +39,21 @@ public class IOHelper {
         return adjacentLists;
     }
 
+    public static List<String> readStringList(String fileName) {
+        File file = createFileFromResources(fileName);
+        List<String> list = new ArrayList<>();
+
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+                list.add(scanner.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            throw new InputFileNotFoundException(fileName, e);
+        }
+
+        return list;
+    }
+
     public static File createFileFromResources(String fileName) {
         return new File(RESOURCE_PATH + fileName);
     }
