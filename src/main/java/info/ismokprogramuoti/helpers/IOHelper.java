@@ -58,4 +58,14 @@ public class IOHelper {
         return new File(RESOURCE_PATH + fileName);
     }
 
+    public static String readAllFileToString(String fileName) {
+        File file = createFileFromResources(fileName);
+        try (Scanner scanner = new Scanner(file)) {
+            scanner.useDelimiter("\\A");
+            return scanner.next();
+        } catch (FileNotFoundException e) {
+            throw new InputFileNotFoundException(fileName, e);
+        }
+    }
+
 }
