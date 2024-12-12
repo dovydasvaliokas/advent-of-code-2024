@@ -1,4 +1,4 @@
-package info.ismokprogramuoti.day2;
+package info.ismokprogramuoti.days;
 
 import info.ismokprogramuoti.helpers.CollectionsHelper;
 import info.ismokprogramuoti.helpers.IOHelper;
@@ -8,19 +8,18 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Main {
-    public static final Logger logger = Logger.getLogger(Main.class.getName());
+public class Day2 {
+    public static final Logger logger = Logger.getLogger(Day2.class.getName());
 
     public static final String FILE_NAME = "Day2/Day2Input.txt";
     public static final int MIN_DIFF = 1;
     public static final int MAX_DIFF = 3;
 
-    private Main() {
+    private Day2() {
     }
 
     public static void main() {
         List<String> reports = IOHelper.readStringList(FILE_NAME);
-
 
         int countSafe = 0;
         for (String levelsString : reports) {
@@ -100,7 +99,6 @@ public class Main {
                 if (areLevelsNotSafe(levels.get(i), levels.get(i + 1), isIncreasing)) {
                     levels.remove(i + 1);
                     return;
-
                 }
             }
         }

@@ -1,4 +1,4 @@
-package info.ismokprogramuoti.day3;
+package info.ismokprogramuoti.days;
 
 import info.ismokprogramuoti.helpers.IOHelper;
 
@@ -9,12 +9,12 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Main {
-    public static final Logger log = Logger.getLogger(Main.class.getName());
+public class Day3 {
+    public static final Logger log = Logger.getLogger(Day3.class.getName());
 
     public static final String FILE_NAME = "Day3/Day3Input.txt";
 
-    private Main() {
+    private Day3() {
     }
 
     public static void main() {
@@ -30,7 +30,6 @@ public class Main {
         }
 
         log.log(Level.INFO, "Product: {0}", product);
-
 
         // Task 2
         multMatcher.reset();

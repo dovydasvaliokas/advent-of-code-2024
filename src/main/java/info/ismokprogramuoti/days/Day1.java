@@ -1,4 +1,4 @@
-package info.ismokprogramuoti.day1;
+package info.ismokprogramuoti.days;
 
 import info.ismokprogramuoti.helpers.CollectionsHelper;
 import info.ismokprogramuoti.helpers.IOHelper;
@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Main {
+public class Day1 {
     public static final String TASK1_INPUT = "Day1/Day1Task1Input.txt";
-    public static final Logger logger = Logger.getLogger(Main.class.getName());
+    public static final Logger logger = Logger.getLogger(Day1.class.getName());
 
-    private Main() {
+    private Day1() {
     }
 
     public static void main() {
@@ -29,7 +29,6 @@ public class Main {
         }
 
         logger.log(Level.INFO, "diff = {0}", diff);
-
 
         // Task 2
         int similarityScore = 0;
