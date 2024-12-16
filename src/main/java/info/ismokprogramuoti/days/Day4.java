@@ -25,6 +25,8 @@ public class Day4 {
         log.log(Level.INFO, "Example count: {0}", CrosswordPuzzleHelper.findWordOneDirectionOccurenceCountsInPuzzle(exampleList, SEARCHABLE_WORD));
         log.log(Level.INFO, "Count: {0}", CrosswordPuzzleHelper.findWordOneDirectionOccurenceCountsInPuzzle(crosswordPuzzleList, SEARCHABLE_WORD));
 
+
+        // TODO: finish PART 2
         log.log(Level.INFO, "Example count of X-MAS: {0}", CrosswordPuzzleHelper.findXOfWordsOccurenceCountsInPuzzle(exampleList, PART_TWO_SEARCHABLE_WORD));
         log.log(Level.INFO, "Task list count X-MAS: {0}", CrosswordPuzzleHelper.findXOfWordsOccurenceCountsInPuzzle(crosswordPuzzleList, PART_TWO_SEARCHABLE_WORD));
 

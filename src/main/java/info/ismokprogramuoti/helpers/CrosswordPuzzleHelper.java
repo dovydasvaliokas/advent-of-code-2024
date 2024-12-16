@@ -68,35 +68,11 @@ public class CrosswordPuzzleHelper {
     // when the whole word has to be in one direction
     public static int findWordOneDirectionOccurenceCountsInPuzzle(List<String> crosswordPuzzleList, String word) {
         int count = 0;
-        int currentLetterIndex = 0;
 
         for (int i = 0; i < crosswordPuzzleList.size(); i++) {
             for (int j = 0; j < crosswordPuzzleList.getFirst().length(); j++) {
-                if (word.charAt(currentLetterIndex) == crosswordPuzzleList.get(i).charAt(j)) {
-                    if (checkWordTopLeftDiagonal(crosswordPuzzleList, word, i, j)) {
-                        count++;
-                    }
-                    if (checkWordTop(crosswordPuzzleList, word, i, j)) {
-                        count++;
-                    }
-                    if (checkWordTopRightDiagonal(crosswordPuzzleList, word, i, j)) {
-                        count++;
-                    }
-                    if (checkWordRight(crosswordPuzzleList, word, i, j)) {
-                        count++;
-                    }
-                    if (checkWordBottomRightDiagonal(crosswordPuzzleList, word, i, j)) {
-                        count++;
-                    }
-                    if (checkWordBottom(crosswordPuzzleList, word, i, j)) {
-                        count++;
-                    }
-                    if (checkWordBottomLeftDiagonal(crosswordPuzzleList, word, i, j)) {
-                        count++;
-                    }
-                    if (checkWordLeft(crosswordPuzzleList, word, i, j)) {
-                        count++;
-                    }
+                if (word.charAt(0) == crosswordPuzzleList.get(i).charAt(j)) {
+                    count += checkWordEachDirection(crosswordPuzzleList, word, i, j);
                 }
             }
         }
@@ -106,45 +82,44 @@ public class CrosswordPuzzleHelper {
 
     public static int findXOfWordsOccurenceCountsInPuzzle(List<String> crosswordPuzzleList, String word) {
         int count = 0;
-        int currentLetterIndex = 0;
         int wordLengthMinusOne = word.length() - 1;
         int wordMiddleLetterIndex = word.length() / 2;
         List<Point> usedMiddleLetters = new ArrayList<>();
 
         for (int i = 0; i < crosswordPuzzleList.size(); i++) {
             for (int j = 0; j < crosswordPuzzleList.getFirst().length(); j++) {
-                if (word.charAt(currentLetterIndex) == crosswordPuzzleList.get(i).charAt(j)) {
+                if (word.charAt(0) == crosswordPuzzleList.get(i).charAt(j)) {
                     if (checkWordTopLeftDiagonal(crosswordPuzzleList, word, i, j)) {
                         Point middleLetterPoint = new Point(i - wordMiddleLetterIndex, j - wordMiddleLetterIndex);
 
-                        if (checkWordTopRightDiagonal(crosswordPuzzleList, word, i, j - wordLengthMinusOne)) {
-                            if (!usedMiddleLetters.contains(middleLetterPoint)) {
-                                usedMiddleLetters.add(middleLetterPoint);
-                                count++;
-                            }
+                        if (checkWordTopRightDiagonal(crosswordPuzzleList, word, i, j - wordLengthMinusOne)
+                                && !usedMiddleLetters.contains(middleLetterPoint)) {
+                            usedMiddleLetters.add(middleLetterPoint);
+                            count++;
                         }
-                        if (checkWordBottomLeftDiagonal(crosswordPuzzleList, word, i - wordLengthMinusOne, j)) {
-                            if (!usedMiddleLetters.contains(middleLetterPoint)) {
-                                usedMiddleLetters.add(middleLetterPoint);
-                                count++;
-                            }
+
+                        if (checkWordBottomLeftDiagonal(crosswordPuzzleList, word, i - wordLengthMinusOne, j)
+                                && !usedMiddleLetters.contains(middleLetterPoint)) {
+                            usedMiddleLetters.add(middleLetterPoint);
+                            count++;
                         }
+
                     }
                     if (checkWordBottomRightDiagonal(crosswordPuzzleList, word, i, j)) {
                         Point middleLetterPoint = new Point(i + wordMiddleLetterIndex, j + wordMiddleLetterIndex);
 
-                        if (checkWordBottomLeftDiagonal(crosswordPuzzleList, word, i, j + wordLengthMinusOne)) {
-                            if (!usedMiddleLetters.contains(middleLetterPoint)) {
-                                usedMiddleLetters.add(middleLetterPoint);
-                                count++;
-                            }
+                        if (checkWordBottomLeftDiagonal(crosswordPuzzleList, word, i, j + wordLengthMinusOne)
+                                && !usedMiddleLetters.contains(middleLetterPoint)) {
+                            usedMiddleLetters.add(middleLetterPoint);
+                            count++;
                         }
-                        if (checkWordTopRightDiagonal(crosswordPuzzleList, word, i + wordLengthMinusOne, j)) {
-                            if (!usedMiddleLetters.contains(middleLetterPoint)) {
-                                usedMiddleLetters.add(middleLetterPoint);
-                                count++;
-                            }
+
+                        if (checkWordTopRightDiagonal(crosswordPuzzleList, word, i + wordLengthMinusOne, j)
+                                && !usedMiddleLetters.contains(middleLetterPoint)) {
+                            usedMiddleLetters.add(middleLetterPoint);
+                            count++;
                         }
+
                     }
                 }
             }
@@ -263,6 +238,37 @@ public class CrosswordPuzzleHelper {
         }
 
         return true;
+    }
+
+    public static int checkWordEachDirection(List<String> crosswordPuzzleList, String word, int i, int j) {
+        int count = 0;
+
+        if (checkWordTopLeftDiagonal(crosswordPuzzleList, word, i, j)) {
+            count++;
+        }
+        if (checkWordTop(crosswordPuzzleList, word, i, j)) {
+            count++;
+        }
+        if (checkWordTopRightDiagonal(crosswordPuzzleList, word, i, j)) {
+            count++;
+        }
+        if (checkWordRight(crosswordPuzzleList, word, i, j)) {
+            count++;
+        }
+        if (checkWordBottomRightDiagonal(crosswordPuzzleList, word, i, j)) {
+            count++;
+        }
+        if (checkWordBottom(crosswordPuzzleList, word, i, j)) {
+            count++;
+        }
+        if (checkWordBottomLeftDiagonal(crosswordPuzzleList, word, i, j)) {
+            count++;
+        }
+        if (checkWordLeft(crosswordPuzzleList, word, i, j)) {
+            count++;
+        }
+
+        return count;
     }
 
     // Letters (might not be working, since not tested)
