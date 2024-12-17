@@ -1,12 +1,15 @@
 package info.ismokprogramuoti.helpers;
 
 import info.ismokprogramuoti.exceptions.InputFileNotFoundException;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class IOHelper {
     public static final String RESOURCE_PATH = "src/main/resources/";
@@ -63,6 +66,34 @@ public class IOHelper {
         try (Scanner scanner = new Scanner(file)) {
             scanner.useDelimiter("\\A");
             return scanner.next();
+        } catch (FileNotFoundException e) {
+            throw new InputFileNotFoundException(fileName, e);
+        }
+    }
+
+    // More concrete IO method for: https://adventofcode.com/2024/day/5 part 1
+    public static void readPrintingOrdersAndPrintingSequence(String fileName, List<Pair<Integer, Integer>> rules, List<List<Integer>> printingUpdates) {
+        File file = createFileFromResources(fileName);
+
+        try (Scanner scanner = new Scanner(file)) {
+            String s;
+            do {
+                s = scanner.nextLine();
+
+                if (s.contains("|")) {
+                    String[] rule = s.split(("\\|"));
+                    rules.add(Pair.of(Integer.parseInt(rule[0]), Integer.parseInt(rule[1])));
+                }
+            }
+            while (scanner.hasNextLine() && s.contains("|"));
+
+            while (scanner.hasNextLine()) {
+                s = scanner.nextLine();
+                String[] updates = s.split(",");
+                List<Integer> updateList = Arrays.stream(updates).map(Integer::parseInt).collect(Collectors.toCollection(ArrayList::new));
+
+                printingUpdates.add(updateList);
+            }
         } catch (FileNotFoundException e) {
             throw new InputFileNotFoundException(fileName, e);
         }

@@ -24,4 +24,14 @@ public class CollectionsHelper {
                 .mapToInt(Integer::parseInt).boxed()
                 .collect(Collectors.toCollection(ArrayList::new));
     }
+
+    public static <T extends Number> double sumMiddleNumbersOfLists(List<List<T>> list) {
+        double sum = 0;
+
+        for (List<? extends Number> integers : list) {
+            sum += integers.get(integers.size() / 2).doubleValue();
+        }
+
+        return sum;
+    }
 }
